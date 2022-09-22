@@ -37,9 +37,23 @@ public class HangMan {
 				System.out.print(guessWord.get(i) + " ");
 			}
 			
+			
 			System.out.println();
 			char guess = input.next().charAt(0);
-			
+			boolean doubleGuess = false;
+			for (int i = 0; i < guesses.size(); i++){
+				if (guess == guesses.get(i))
+				{
+					System.out.println("You made this guess already!");
+					doubleGuess = true;
+					break;
+				}
+			}
+			if (doubleGuess)
+			{
+				continue;
+			}
+			guesses.add(guess);
 			for (int i = 0 ; i < answer.length(); i++){
 				if (guess == anslst.get(i)) {
 					guessWord.set(i, guess);
@@ -48,7 +62,6 @@ public class HangMan {
 			}
 			
 			if (!goodGuess) {
-				System.out.println("wrong guess");
 				wrongGuesses++;
 				System.out.println("Wrong Guesses:" + wrongGuesses);
 				
